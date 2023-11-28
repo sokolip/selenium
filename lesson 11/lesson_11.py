@@ -20,4 +20,18 @@ wait.until(EC.visibility_of_element_located(VISIBLE_AFTER_BUTTON)).click()
 ENABLE_IN_SECONDS = ("xpath", "//button[@id='enableAfter']")
 wait.until(EC.element_to_be_clickable(ENABLE_IN_SECONDS)).click()
 
-driver.get()
+driver.get("https://the-internet.herokuapp.com/dynamic_controls")
+REMOVE_BUTTON = ("xpath", "//button[text()='Remove']")
+driver.find_element(*REMOVE_BUTTON).click()
+
+wait.untill(EC.invisibility_of_element_located(REMOVE_BUTTON))
+print("Все ОК")
+
+ENABLE_BUTTON = ("xpath", "//button[text()='Enable']")
+TEXT_FIELD = ("xpath", "//input[@type='text']")
+
+wait.until(EC.element_to_be_clickable(ENABLE_BUTTON)).click()
+wait.until(EC.element_to_be_clickable(TEXT_FIELD)).send_keys("Hello")
+wait.until(EC.text_to_be_present_in_element_value(TEXT_FIELD, "Hello"))
+print("Все ОК")
+
