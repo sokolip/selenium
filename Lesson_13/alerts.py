@@ -1,7 +1,8 @@
 import time
 
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManagerfrom selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -21,15 +22,26 @@ driver.switch_to.alert
 time.sleep(3)
 
 alert.accept()
+#alert.dismiss()
 
 time.sleep(3)
 
 BUTTON_3 = ("xpath", "//button[@id='alertButton']")
+
 wait.until(EC.element_to_be_clickable(BUTTON_3)).click()
+
 time.sleep(3)
+
 print(alert.text)
 
-alert.dismiss()
+time.sleep(3)
+
+BUTTON_4 = ("xpath", "//button[@id='promtButton']")
+
+wait.until(EC.element_to_be_clickable(BUTTON_4)).click()
+
+alert.send_keys("Hello World")
 
 time.sleep(3)
 
+alert.accept()
